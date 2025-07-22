@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock, Paper, Scissors</title>
+  <script>
+    let humanScore = 0;
+    let computerScore = 0;
+
+    //get a random result from 1 , 2 , and 3
+    function getComputerChoice() {
+      // Multiple the random number to 3 so we can increase the random values from between 0=> but <1 to 0=> but not <3
+      let randomChoice = Math.random() * 3;
+      //Round down the numbers outputs are 0,1,2
+      let computerChoice = Math.floor(randomChoice);
+      //If computerChoice is 0 we set computerChoice to 0
+      return computerChoice;
+    }
+
+    function getHumanChoice(choice) {
+      //prompt user to select among the three and convert is to lowercase for case insensitivity
+      choice = prompt("Rock, Paper or Scissors?").toLowerCase();
+            //If human is rock we set choice to 0
+      if (choice == "rock") {
+        return 0;
+      }
+      //If human is paper we set choice to 1
+      if (choice == "paper") {
+        return 1;
+      }
+      //If human is scissors we set choice to 2
+      if (choice == "scissors") {
+        return 2;
+      }
+    }
+
+    function playRound(humanChoice,computerChoice) {
+      if (humanChoice == computerChoice) {
+        console.log(`It's a Draw!`)
+      }
+      if (humanChoice == 0 && computerChoice == 1) {
+        computerScore++;
+        console.log(`You loss paper beat's the rock`)
+      }
+      if (humanChoice == 0 && computerChoice == 2) {
+        humanScore++;
+        console.log(`You win rock beat's the scissors!`)
+      }
+      if (humanChoice == 1 && computerChoice == 0) {
+        humanScore++;
+        console.log(`You win paper beat's the rock!`)
+      }
+      if (humanChoice == 1 && computerChoice == 2) {
+        computerScore++;
+        console.log(`You loss scissors beat's the rock!`)
+      }
+      if (humanChoice == 2 && computerChoice == 0) {
+        computerScore++;
+        console.log(`You loss rocks beat's the scissors!`)
+      }
+      if (humanChoice == 2 && computerChoice == 1) {
+        humanScore++;
+        console.log(`You win scissors beat's the paper!`)
+      }
+      // else {
+      //   // console.log(`${humanChoice} and ${computerChoice}`);
+      // }
+    }
+
+    function playGame(){
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    }
+
+    for (i=0; i<=5; i++){
+      if (i!= 5) {
+        playGame();
+        console.log(`Human: ${humanScore} points | Computer: ${computerScore} points`)
+      }
+      else if (humanScore == computerScore) {
+        console.log("It's a Draw")
+      }
+      else if (humanScore > computerScore)
+        console.log(`Hoooman Wins! ${humanScore} points`)
+      else if (humanScore < computerScore)
+        console.log(`Computer Wins!  ${computerScore} points`)
+    }
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
